@@ -21,9 +21,9 @@ CMD_PARAMS="--master $MASTER \
     --executor-memory ${EXECUTOR_MEMORY}G \
     --conf spark.cores.max=$TOTAL_CORES \
     --conf spark.task.cpus=$NUM_EXECUTOR_CORES \
-    --conf spark.sql.shuffle.partitions=512 \
     --conf spark.sql.files.maxPartitionBytes=4G \
-    $S3PARAMS"
+    --conf spark.sql.autoBroadcastJoinThreshold=-1 \
+    --conf spark.rapids.sql.enabled=false "
 
 ${SPARK_HOME}/bin/spark-submit \
 $CMD_PARAMS \

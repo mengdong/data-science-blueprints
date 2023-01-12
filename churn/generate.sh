@@ -15,16 +15,12 @@
 # Source the environment file for global settings
 . gen.env.sh
 
-CMD_PARAMS="--master $MASTER \
-    --jars $JARS \
-    --driver-memory ${DRIVER_MEMORY}G \
+CMD_PARAMS="--driver-memory ${DRIVER_MEMORY}G \
     --executor-cores $NUM_EXECUTOR_CORES \
     --executor-memory ${EXECUTOR_MEMORY}G \
     --conf spark.cores.max=$TOTAL_CORES \
     --conf spark.task.cpus=1 \
-    --conf spark.sql.shuffle.partitions=1024 \
-    --conf spark.sql.files.maxPartitionBytes=2G \
-    $S3PARAMS"
+    --conf spark.sql.files.maxPartitionBytes=2G"
 
 ${SPARK_HOME}/bin/spark-submit \
 $CMD_PARAMS \
